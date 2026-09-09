@@ -1,0 +1,16 @@
+specVersion: "1"
+id: lax-434930
+leanVersion: "v4.30.0"
+mathlibVersion: "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+title: "Classical Complexity Classes"
+authors:
+  - name: Édouard Bonnet
+  - name: gpt-6-astra
+bibEntries:
+  - |
+    @misc{katz2005complexity,
+      author = {Jonathan Katz},
+      title = {Notes on Complexity Theory: Lecture 1},
+      year = {2005},
+      url = {https://www.cs.umd.edu/~jkatz/complexity/f05/lecture1.pdf}
+    }

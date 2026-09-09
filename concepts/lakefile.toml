@@ -1,0 +1,19 @@
+name = "Lax434930"
+defaultTargets = ["Lax434930"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+
+[[require]]
+name = "Lax554803"
+git = "https://github.com/EdouardBonnet/p-complement"
+rev = "289e82d4351fe8c710add0dcbffd0290f016994e"
+subDir = "concepts"
+
+[[lean_lib]]
+name = "Lax434930"
