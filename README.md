@@ -43,9 +43,13 @@ original class, so there is no new equivalence obligation for it.
 The [basic properties](concepts/Lax434930/BasicProperties.lean) prove
 L ⊆ NL, L ⊆ PSPACE, NL ⊆ NPSPACE, PSPACE ⊆ NPSPACE, P ⊆ EXPTIME,
 `co (co C) = C`, and the universal-certificate characterization of coNP.
-All ten statement obligations have proofs. Only P ⊆ EXPTIME uses an
+All ten statements in these concepts have proofs. Only P ⊆ EXPTIME uses an
 external statement, the proved single-tape characterization from lax-554803.
 The remaining proofs have no statement assumptions.
+
+The [P versus NP question](concepts/Lax434930/PVersusNP.lean) states
+`P ≠ NP` as the axiom `Lax434930.PVersusNP.P_ne_NP`. It is the submission's
+only open statement and is not used by any proof.
 
 The [semantic audit](AUDIT.md) explains the definitions and their scope.
 [SpaceSemantics.lean](proofs/Lax434930Proofs/SpaceSemantics.lean) also checks

@@ -6,6 +6,7 @@ import Lax434930.LogarithmicSpace
 import Lax434930.NondeterministicLogarithmicSpace
 import Lax434930.NondeterministicPolynomialSpace
 import Lax434930.NondeterministicPolynomialTime
+import Lax434930.PVersusNP
 import Lax434930.PolynomialSpace
 import Lax434930.PolynomialTime
 import Lax434930.SpaceBounds

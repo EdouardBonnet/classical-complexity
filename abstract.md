@@ -8,3 +8,4 @@ classes use finite Turing machines with a bounded, read-only input tape and a
 separate work tape, whose space is bounded on every computation branch.
 We prove elementary containments, complementation identities, and the
 injectivity and linear length of the certificate encoding.
+We also state $\mathrm{P} \ne \mathrm{NP}$ as an open question.
