@@ -12,7 +12,6 @@ checkout:
 
 - NL ⊆ P: polynomial-time configuration-graph reachability and its machine implementation.
 - NP ⊆ PSPACE: polynomial-space certificate enumeration and verifier simulation.
-- NPSPACE ⊆ EXPTIME: a time-bounded deterministic search of bounded configurations.
 
 P ⊆ NP has a new proof using a linear-time certificate-pair projection and
 polynomial-time machine composition. The full Lean build passes. A direct axiom check of this new theorem lists
@@ -21,16 +20,23 @@ certificate encoding match their original declarations after the namespace
 change needed to incorporate P.
 P ≠ NP remains an explicitly open question and is not used by any proof.
 
-Do not publish as a closed proof network until these three obligations are
+Do not publish as a closed proof network until these two obligations are
 proved, unless the user explicitly authorizes a draft with open proof obligations.
 
-Validation: `lax build --replay` compiled both packages and replayed the
-kernel proofs successfully. The closure audit reports 10 of 14 statements
-closed: the three inclusion obligations and the explicitly open P versus NP
-question remain. The prescribed audits for the three existing complexity
-results also pass.
+Validation: the Lean build and direct axiom checks pass for the new
+NPSPACE inclusion. The archive replay was interrupted and must be rerun;
+the existing build report predates this proof. The prescribed audits for
+the three existing complexity results pass.
 
-The annotated companion compiles to four pages. Static validation accepts
-all 33 annotations, and reflow extraction places each annotation start in
-the matching paragraph. Abstract references link to the exact statement
-annotations. See paper/README.md for the PDF spacing limitation.
+Static validation accepts all 35 annotations. The revised PDF and reflow
+extraction still need checking after the added NPSPACE proof. Abstract
+references link to the exact statement annotations. See paper/README.md
+for the previously observed PDF spacing limitation.
+
+NPSPACE ⊆ EXPTIME now has a direct proof with no concept-axiom assumptions.
+It reuses the Savitch implementation, replacing each former concept axiom
+by its checked proof. New lemmas bound all halting branches by the finite
+configuration count. A concrete stack machine simulates each source
+transition in one stack step and clears its stacks before output. The
+existing tape simulations retain arbitrary time bounds. All class
+definitions remain unchanged.

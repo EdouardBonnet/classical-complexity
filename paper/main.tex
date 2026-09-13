@@ -19,7 +19,7 @@ We define classical complexity classes for languages of finite binary strings,
 using explicit time bounds, work-space bounds, and certificate encodings.
 The definition of $\mathrm P$ and its proved finite-stack and single-tape
 characterizations are included locally. We prove $\mathrm L\subseteq\mathrm{NL}$,
-$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$,
+$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
 as well as the stated encoding properties and closure of $\mathrm P$ under
 complement. The formalization uses Lean and Mathlib 4.33.0.
 \end{abstract}
@@ -289,10 +289,9 @@ The requested chain is
 \mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
 \subseteq\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
 \]
-The formal proofs currently cover the three statements below.
-The other three arrows, $\mathrm{NL}\subseteq\mathrm P$,
-$\mathrm{NP}\subseteq\mathrm{PSPACE}$, and
-$\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$, remain formal proof obligations.
+The formal proofs currently cover the four statements below.
+The other two arrows, $\mathrm{NL}\subseteq\mathrm P$ and
+$\mathrm{NP}\subseteq\mathrm{PSPACE}$, remain formal proof obligations.
 No completed proof assumes these obligations.
 
 \begin{lemma}\leavevmode
@@ -332,6 +331,28 @@ $\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$.
 Use the same machine and polynomial space bound, and remove the determinism requirement.
 \qedhere
 % lax end Lax434930Proofs.BasicProperties.PSPACE_subset_NPSPACE
+\end{proof}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.BasicProperties.NPSPACE_subset_EXPTIME
+$\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
+% lax end Lax434930.BasicProperties.NPSPACE_subset_EXPTIME
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.NPSPACE_subset_EXPTIME
+Apply the proved Savitch simulation to obtain a deterministic machine using
+polynomial work space. A halting computation cannot revisit a configuration,
+since the intervening transitions could then be repeated indefinitely.
+A machine with $q$ states, $g$ work symbols, and space bound $s$ on an input
+of length $n$ has at most $q(n+2)s g^s$ reachable configurations. Consequently
+its running time is exponential when $s$ is polynomial. The explicit stack
+simulation preserves each source transition as one stack-machine step and
+includes a linear bound for clearing the stacks and writing the answer.
+The stack-to-tape simulations have polynomial overhead in the input length
+and simulated time, so the final single-tape bound is still exponential.
+\qedhere
+% lax end Lax434930Proofs.NPSPACE_subset_EXPTIME
 \end{proof}
 
 \section{An open question}

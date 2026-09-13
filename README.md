@@ -40,8 +40,8 @@ The definition of P is unchanged from the original stack-machine definition.
 
 The [inclusion statements](concepts/Lax434930/BasicProperties.lean) are
 L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE ⊆ NPSPACE ⊆ EXPTIME.
-Proofs currently cover L ⊆ NL, P ⊆ NP, and PSPACE ⊆ NPSPACE.
-The other three statements are explicit proof obligations; see [PORT_STATUS.md](PORT_STATUS.md).
+Proofs currently cover L ⊆ NL, P ⊆ NP, PSPACE ⊆ NPSPACE, and NPSPACE ⊆ EXPTIME.
+The other two statements are explicit proof obligations; see [PORT_STATUS.md](PORT_STATUS.md).
 The three certificate-encoding statements and the four incorporated results
 about P are proved. All completed proofs use only local statements or Mathlib.
 Redundant containments and the elementary complementation identities remain
@@ -49,11 +49,19 @@ internal lemmas instead of separately exposed results.
 
 The [P versus NP question](concepts/Lax434930/PVersusNP.lean) states
 `P ≠ NP` as the axiom `Lax434930.PVersusNP.P_ne_NP`. It is the submission's
-only open question; the three inclusion proof obligations are listed above.
+only open question; the two inclusion proof obligations are listed above.
 No completed proof uses the open question or the inclusion obligations.
 
 The [annotated companion](paper/main.tex) reproduces the class definition text
 and links statements and proof summaries to their formal counterparts.
+
+The proof of NPSPACE ⊆ EXPTIME reuses the complete Savitch proof from
+[lax-307052](https://laxarchive.org/lax-307052/), source commit
+`1062714795609fb441d35a663d6d21fa2fba3a72`. Its auxiliary definitions and
+proofs are included locally with attribution; references to its concept
+axioms are replaced by the corresponding proved declarations. They depend
+on the class definitions, not on the inclusion being proved. This avoids
+an archive dependency back to the separate Savitch submission.
 
 The [semantic audit](AUDIT.md) explains the definitions and their scope.
 [SpaceSemantics.lean](proofs/Lax434930Proofs/SpaceSemantics.lean) also checks

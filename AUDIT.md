@@ -110,15 +110,15 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 ## Proof scope
 
-The completed proofs cover three certificate-encoding properties, three
+The completed proofs cover three certificate-encoding properties, four
 adjacent inclusions, and four results about P and its machine models.
 The new proof of P ⊆ NP uses a finite stack machine that extracts the first
 component of the unchanged certificate-pair encoding in linear time, then
 composes it with the given polynomial-time decider.
 
-NL ⊆ P, NP ⊆ PSPACE, and NPSPACE ⊆ EXPTIME currently have no
+NL ⊆ P and NP ⊆ PSPACE currently have no
 formal proof in this submission. They are recorded as explicit proof obligations.
-No completed proof uses any of these three statements.
+No completed proof uses either of these two statements.
 
 `Lax434930.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
 defined above. Its concept is labelled `open question`, it has no proof,
@@ -127,10 +127,9 @@ proofs are now local; there is no dependency on another archive entry.
 
 The three machine-based space definitions beyond L share the same space
 machine semantics. NP deliberately uses its standard verifier definition,
-and EXPTIME uses the existing single-tape model. Equivalence of these
-alternative standard machine presentations, Savitch's theorem, and the
-Immerman–Szelepcsényi theorem are outside the proved statements of this
-submission. In particular, NPSPACE and coNL are defined by their own
+and EXPTIME uses the existing single-tape model. The proof of NPSPACE ⊆ EXPTIME incorporates the existing Savitch proof
+and connects its deterministic simulator to the single-tape time model.
+The Immerman–Szelepcsényi theorem is outside this submission's proved statements. In particular, NPSPACE and coNL are defined by their own
 criteria, not identified with PSPACE and NL by an unproved axiom.
 
 ## Mathlib 4.33.0 integration
@@ -139,6 +138,23 @@ The stack-machine definition of P and the finite machine models from the cited
 P submission are now defined here. Their four results and complete proofs are
 also included. All imported names were moved into the local submission
 namespace; the mathematical definitions and statements are unchanged.
-The new inclusion chain has three explicitly unproved statements, listed in
+The new inclusion chain has two explicitly unproved statements, listed in
 PORT_STATUS.md. P ≠ NP remains an open question. No completed proof uses
-any of these four statements.
+any of these three statements.
+
+## Savitch proof dependencies
+
+The internal Savitch files originate in
+[lax-307052](https://laxarchive.org/lax-307052/), source commit
+`1062714795609fb441d35a663d6d21fa2fba3a72`, by Édouard Bonnet and
+gpt-6-astra. They retain the source Apache-2.0 license. Namespace changes
+and Mathlib 4.33.0 compatibility edits preserve their statements. Every
+reference to one of the source submission's twelve statement axioms is
+replaced by its actual proof declaration. One module is split to keep the
+Lean import graph acyclic.
+
+The dependency order is class definitions, then the local Savitch proof,
+then NPSPACE ⊆ EXPTIME. The copied Savitch files do not import the inclusion
+statements. Direct Lean axiom checks of both `polynomial_space` and
+`NPSPACE_subset_EXPTIME` list only `propext`, `Classical.choice`, and
+`Quot.sound`. Neither result uses a submission statement as an axiom.

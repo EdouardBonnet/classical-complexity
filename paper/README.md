@@ -6,7 +6,8 @@ links a definition, a statement, or a proof to its matching formal item.
 
 Statement markers start inside their theorem environments, after the heading.
 Proof markers start inside proof environments and end after the explicit QED
-marker. The reflow check confirms all 33 starts lie in the matching statement,
-definition, or proof paragraph. The marked and unmarked PDFs have identical
-words; the current marker package adds about 11 points of vertical spacing
-before one proof on the fourth page.
+marker. Static validation accepts all 35 annotations. Before the NPSPACE
+proof was added, reflow extraction confirmed that all 33 starts lay in the
+matching paragraph. Those marked and unmarked PDFs had identical words;
+the marker package added about 11 points of vertical spacing before one
+proof on the fourth page. The revised PDF and reflow remain to be checked.

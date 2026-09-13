@@ -6,6 +6,7 @@ import Lax434930Proofs.FiniteAlphabet
 import Lax434930Proofs.FiniteControl
 import Lax434930Proofs.ModelEquivalence
 import Lax434930Proofs.PSubsetNP
+import Lax434930Proofs.NPSpaceExponentialTime
 import Lax434930Proofs.PolynomialComposition
 import Lax434930Proofs.PostTime
 import Lax434930Proofs.SpaceSemantics
