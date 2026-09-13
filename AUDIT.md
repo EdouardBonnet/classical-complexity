@@ -3,16 +3,15 @@
 ## Languages and quantifier order
 
 Every class is a `Set Language`, where `Language = Set (List Bool)`, with
-exactly the same binary strings as lax-554803. Complements are relative to
+exactly the same binary strings as [lax-554803](https://laxarchive.org/lax-554803/). Complements are relative to
 all finite binary strings. Every machine and resource polynomial or
 constant is chosen before the universally quantified input. None of these
 choices may depend on the particular input.
 
 ## P, NP, coNP, and EXPTIME
 
-P is definitionally identical to `Lax554803.PolynomialTime.P`. Its
-finite-alphabet and single-tape characterizations remain the results of
-the dependency. No old proof code is copied or required as a Lake package.
+P retains the definition from the cited submission. Its finite-alphabet and
+single-tape characterizations and their proofs are now included locally.
 
 NP is defined by a verifier language in that exact P. Membership requires a
 binary certificate whose length is at most `p.eval input.length`. The
@@ -33,13 +32,13 @@ languages. In particular, they are not the set complements of NL and NP.
 The coNP characterization is proved by negating NP's existential
 certificate condition. It retains the same verifier and certificate bound.
 
-EXPTIME uses lax-554803's finite elementary deterministic single-tape
+EXPTIME uses the locally incorporated finite elementary deterministic single-tape
 machine and the bound `2 ^ p.eval input.length`. The exponent may have any
 fixed polynomial degree: this is EXPTIME/EXP, rather than the smaller E
 class with a linear exponent. Acceptance requires reaching a terminal
 configuration and reading its Boolean answer. Input is encoded exactly as
-in the dependency's single-tape P. The inclusion P ⊆ EXPTIME first invokes
-the dependency's proved characterization, then enlarges `p(n)` to
+in the local single-tape P. The inclusion P ⊆ EXPTIME first invokes
+the locally proved characterization, then enlarges `p(n)` to
 `2 ^ p(n)` without changing the execution certificate.
 
 ## Finite local space machines
@@ -111,17 +110,20 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 ## Proof scope
 
-The ten annotated proofs cover three encoding properties and
-seven elementary class properties. The only statement assumption is
-`Lax554803.ModelEquivalence.singleTapeP_eq_P`, used by P ⊆ EXPTIME; it is
-proved by lax-554803. Every other annotated proof declares an empty
-statement-assumption list, checked by the Lax inspector. Definitions do
-not use any concept statements.
+The completed proofs cover three certificate-encoding properties, three
+adjacent inclusions, and four results about P and its machine models.
+The new proof of P ⊆ NP uses a finite stack machine that extracts the first
+component of the unchanged certificate-pair encoding in linear time, then
+composes it with the given polynomial-time decider.
+
+NL ⊆ P, NP ⊆ PSPACE, and NPSPACE ⊆ EXPTIME currently have no
+formal proof in this submission. They are recorded as explicit proof obligations.
+No completed proof uses any of these three statements.
 
 `Lax434930.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
 defined above. Its concept is labelled `open question`, it has no proof,
-and none of the proved statements depends on it. It is the submission's
-only open statement.
+and no completed proof depends on it. All dependencies of the completed
+proofs are now local; there is no dependency on another archive entry.
 
 The three machine-based space definitions beyond L share the same space
 machine semantics. NP deliberately uses its standard verifier definition,
@@ -130,3 +132,13 @@ alternative standard machine presentations, Savitch's theorem, and the
 Immerman–Szelepcsényi theorem are outside the proved statements of this
 submission. In particular, NPSPACE and coNL are defined by their own
 criteria, not identified with PSPACE and NL by an unproved axiom.
+
+## Mathlib 4.33.0 integration
+
+The stack-machine definition of P and the finite machine models from the cited
+P submission are now defined here. Their four results and complete proofs are
+also included. All imported names were moved into the local submission
+namespace; the mathematical definitions and statements are unchanged.
+The new inclusion chain has three explicitly unproved statements, listed in
+PORT_STATUS.md. P ≠ NP remains an open question. No completed proof uses
+any of these four statements.

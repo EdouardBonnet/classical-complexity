@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=28mm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Open question}
+\title{Classical Complexity Classes}
+\author{\'{E}douard Bonnet \and Codex 5.6 and 6}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We define classical complexity classes for languages of finite binary strings,
+using explicit time bounds, work-space bounds, and certificate encodings.
+The definition of $\mathrm P$ and its proved finite-stack and single-tape
+characterizations are included locally. We prove $\mathrm L\subseteq\mathrm{NL}$,
+$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$,
+as well as the stated encoding properties and closure of $\mathrm P$ under
+complement. The formalization uses Lean and Mathlib 4.33.0.
+\end{abstract}
+
+\section{Languages, machines, and complexity classes}
+All languages are subsets of the finite binary strings. The following
+definition text is reproduced from the concept layer. The annotations link
+it to the precise machine data, encodings, quantifiers, and bounds in Lean.
+
+\begin{definition}[The complexity class P]\leavevmode
+% lax begin Lax434930.PolynomialTime
+A language of finite binary strings belongs to $\mathrm{P}$ if a deterministic
+Turing machine decides membership in that language in polynomial time.
+Precisely, there are a single machine and a polynomial $p \in \mathbb{N}[X]$
+such that, on every input $w$, the machine halts within $p(|w|)$ steps and
+returns the bit $1$ if $w$ belongs to the language and $0$ otherwise.
+
+The definition uses mathlib's deterministic stack machines, the identity
+encoding of binary strings, and a singleton Boolean output. Time counts
+transitions of fixed finite instruction blocks. We also prove equivalence
+with elementary single-tape machines.
+% lax end Lax434930.PolynomialTime
+\end{definition}
+
+\begin{definition}[Finite-stack and elementary single-tape definitions of P]\leavevmode
+% lax begin Lax434930.MachineModels
+The finite-stack class requires every stack alphabet to be finite. The
+single-tape class uses a deterministic machine whose transitions each move
+the head one square or write one symbol. Its alphabet and control states
+are finite. The input is
+written in its original order, starting at the head, with blank tape elsewhere.
+The two input symbols are distinct and different from blank. A halted control
+state determines the Boolean answer; work tape need not be erased.
+% lax end Lax434930.MachineModels
+\end{definition}
+
+\begin{definition}[Binary encoding of an input and a certificate]\leavevmode
+% lax begin Lax434930.Certificates
+To encode a pair $(x,y)$ of binary strings, replace each bit $b$ of $x$ by
+$0b$, then append a single $1$ followed by $y$. This encoding has length
+$2|x|+|y|+1$ and has a unique decoding. In particular, a polynomial bound in
+the encoded length is a polynomial bound in the combined input and
+certificate lengths.
+% lax end Lax434930.Certificates
+\end{definition}
+
+\begin{definition}[The complexity class NP]\leavevmode
+% lax begin Lax434930.NondeterministicPolynomialTime
+A binary language $A$ belongs to $\mathrm{NP}$ if there are a verifier
+language $V\in\mathrm{P}$ and a polynomial $p\in\mathbb{N}[X]$ such that
+$x\in A$ precisely when some binary certificate $y$ with $|y|\le p(|x|)$
+satisfies $\langle x,y\rangle\in V$.
+The verifier is a single deterministic polynomial-time decider on the
+explicit pair encoding, and its running time is polynomial in the combined
+input and certificate lengths. The certificate bound depends only on the
+original input length. This is the standard certificate definition of NP.
+% lax end Lax434930.NondeterministicPolynomialTime
+\end{definition}
+
+\begin{definition}[Finite Turing machines with a read-only input tape]\leavevmode
+% lax begin Lax434930.SpaceMachines
+A machine has finitely many control states, a finite work alphabet with a
+blank symbol, a read-only binary input tape between distinct endmarkers,
+and one initially blank, semi-infinite work tape. Both heads start at
+position zero, which is the input's left endmarker and the work tape's
+leftmost cell. One transition reads the two scanned symbols, writes one
+work symbol, changes state, and moves each head by at most one cell.
+An outward move at a tape boundary leaves that head in place.
+
+The finite transition table gives a finite set of possible actions for
+each state and pair of scanned symbols. A deterministic machine has at
+most one action in every such set. A configuration with no successor is
+terminal, and its control state supplies an accept/reject bit. Acceptance
+means that some computation branch reaches an accepting terminal
+configuration. A decider has a finite bound on the lengths of all branches
+for each input, and accepts exactly the strings in its language. This
+bound need not be computable or satisfy any specified time bound.
+
+Only the work tape is charged as space. Bounding its head below $s$ at
+every reachable configuration bounds every visited cell to the prefix
+$0,\ldots,s-1$, including blank cells and cells later erased. The input
+head is confined to $|x|+2$ positions and cannot act as an unbounded free
+counter. The transition table sees neither head position nor the input
+length; it sees only the control state and scanned symbols.
+% lax end Lax434930.SpaceMachines
+\end{definition}
+
+\begin{definition}[Deterministic and nondeterministic space bounds]\leavevmode
+% lax begin Lax434930.SpaceBounds
+For a function $s:\mathbb{N}\to\mathbb{N}$, the classes DSPACE and NSPACE
+below use the exact bound $s(n)$ on the number of work cells visited.
+There is one machine for all inputs, it halts on every branch, and every
+reachable configuration on an input of length $n$ respects the bound.
+DSPACE additionally requires deterministic transitions. Constant factors
+are quantified explicitly when the classical space classes are defined.
+We use $\lfloor\log_2(n+2)\rfloor$ as a positive logarithmic bound, so
+empty inputs are included without a special case.
+% lax end Lax434930.SpaceBounds
+\end{definition}
+
+\begin{definition}[The complexity class L]\leavevmode
+% lax begin Lax434930.LogarithmicSpace
+A binary language belongs to $\mathrm{L}$ if a deterministic Turing machine
+decides membership using $O(\log n)$ work space and a separate read-only
+input tape. Precisely, some positive constant $c$ bounds work space by
+$c\lfloor\log_2(n+2)\rfloor$ on every input of length $n$.
+% lax end Lax434930.LogarithmicSpace
+\end{definition}
+
+\begin{definition}[The complexity class NL]\leavevmode
+% lax begin Lax434930.NondeterministicLogarithmicSpace
+A binary language belongs to $\mathrm{NL}$ if a nondeterministic Turing
+machine decides membership using $O(\log n)$ work space and a separate
+read-only input tape. Every branch halts and respects the space bound;
+membership means that at least one branch accepts. The bound is
+$c\lfloor\log_2(n+2)\rfloor$ for one positive constant $c$.
+% lax end Lax434930.NondeterministicLogarithmicSpace
+\end{definition}
+
+\begin{definition}[The complexity class PSPACE]\leavevmode
+% lax begin Lax434930.PolynomialSpace
+A binary language belongs to $\mathrm{PSPACE}$ if one deterministic Turing
+machine decides membership using at most $p(n)$ work cells on inputs of
+length $n$, for some polynomial $p\in\mathbb{N}[X]$. The input tape is
+read-only and excluded from work space, and the machine always halts.
+% lax end Lax434930.PolynomialSpace
+\end{definition}
+
+\begin{definition}[The complexity class NPSPACE]\leavevmode
+% lax begin Lax434930.NondeterministicPolynomialSpace
+A binary language belongs to $\mathrm{NPSPACE}$ if one nondeterministic
+Turing machine decides membership using at most $p(n)$ work cells on
+every branch on inputs of length $n$, for some polynomial
+$p\in\mathbb{N}[X]$. All branches halt; at least one accepts precisely
+when the input belongs to the language. The input tape is read-only and
+excluded from work space.
+% lax end Lax434930.NondeterministicPolynomialSpace
+\end{definition}
+
+\begin{definition}[The complexity classes coNL and coNP]\leavevmode
+% lax begin Lax434930.ComplementClasses
+For a class $\mathcal C$ of binary languages, $\mathrm{co}\mathcal C$
+consists of languages whose complements belong to $\mathcal C$.
+Complements are taken among all finite binary strings. In particular,
+$A\in\mathrm{coNL}$ means $\overline A\in\mathrm{NL}$, and
+$A\in\mathrm{coNP}$ means $\overline A\in\mathrm{NP}$.
+This operation complements each language; it does not take the set-theoretic
+complement of the class of languages.
+% lax end Lax434930.ComplementClasses
+\end{definition}
+
+\begin{definition}[The complexity class EXPTIME]\leavevmode
+% lax begin Lax434930.ExponentialTime
+A binary language belongs to $\mathrm{EXPTIME}$ if a deterministic Turing
+machine decides membership within $2^{p(n)}$ transitions on every input
+of length $n$, for some polynomial $p\in\mathbb{N}[X]$.
+The machine is the finite elementary single-tape machine defined here:
+input bits are distinct from blank, input appears in its original order,
+and each transition performs one move or one write. A terminal state's
+Boolean label gives the answer. The polynomial in the exponent may have
+any fixed degree; this is the usual EXPTIME, also called EXP.
+% lax end Lax434930.ExponentialTime
+\end{definition}
+
+\section{Encoding properties}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.Certificates.unpair_pair
+Decoding $\langle x,y\rangle$ returns exactly $(x,y)$.
+% lax end Lax434930.Certificates.unpair_pair
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.Certificates.unpair_pair
+Induct on $x$. The empty word contributes only the delimiter; each additional bit contributes one two-bit block, which the decoder removes before applying the induction hypothesis.
+\qedhere
+% lax end Lax434930Proofs.Certificates.unpair_pair
+\end{proof}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.Certificates.pair_injective
+The function $(x,y)\mapsto\langle x,y\rangle$ is injective.
+% lax end Lax434930.Certificates.pair_injective
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.Certificates.pair_injective
+Apply the decoder to an equality of encodings and use the preceding decoding identity.
+\qedhere
+% lax end Lax434930Proofs.Certificates.pair_injective
+\end{proof}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.Certificates.pair_length
+The encoded pair has length $|\langle x,y\rangle|=2|x|+|y|+1$.
+% lax end Lax434930.Certificates.pair_length
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.Certificates.pair_length
+Induct on $x$. The delimiter contributes one bit, each bit of $x$ contributes two, and $y$ is appended unchanged.
+\qedhere
+% lax end Lax434930Proofs.Certificates.pair_length
+\end{proof}
+
+\section{Polynomial-time machine models and complement}
+
+\begin{lemma}[Finite stack alphabets suffice]\leavevmode
+% lax begin Lax434930.FiniteStackEquivalence
+Requiring every work-stack alphabet to be finite leaves $\mathrm{P}$ unchanged.
+% lax end Lax434930.FiniteStackEquivalence
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.ModelEquivalence.finiteStackP_eq_P
+The input and output alphabets are finite. The machine has finite control, and the push instructions have finite ranges. Restrict each stack alphabet to these symbols. Every reachable transition and its time bound are preserved. Forgetting the finite-alphabet restriction gives the reverse inclusion.
+\qedhere
+% lax end Lax434930Proofs.ModelEquivalence.finiteStackP_eq_P
+\end{proof}
+
+\begin{lemma}[Single-tape characterization of P]\leavevmode
+% lax begin Lax434930.ModelEquivalence
+The elementary single-tape and stack-machine definitions of $\mathrm{P}$
+coincide. Both simulations include polynomial bounds for input conversion,
+execution, and final output conversion.
+% lax end Lax434930.ModelEquivalence
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.ModelEquivalence.singleTapeP_eq_P
+After restricting stack alphabets, compile the finitely many stacks to tape tracks with polynomial overhead. In the reverse direction, two stacks represent the portions of a tape on either side of its head, with linear overhead per simulated transition. The formal simulations include bounds for input conversion and final output conversion.
+\qedhere
+% lax end Lax434930Proofs.ModelEquivalence.singleTapeP_eq_P
+\end{proof}
+
+\begin{lemma}[P is closed under complement]\leavevmode
+% lax begin Lax434930.ComplementClosure
+If a language of binary strings belongs to $\mathrm{P}$, then its complement
+also belongs to $\mathrm{P}$. The complement is taken in the set of all finite
+binary strings.
+% lax end Lax434930.ComplementClosure
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.ComplementClosure.closed_under_complement
+Compose the output-alphabet equivalence with Boolean negation. The unchanged execution then returns the opposite Boolean answer with the same polynomial bound. Negating the correctness equivalence identifies the complementary language.
+\qedhere
+% lax end Lax434930Proofs.ComplementClosure.closed_under_complement
+\end{proof}
+
+\begin{lemma}[Single-tape P is closed under complement]\leavevmode
+% lax begin Lax434930.SingleTapeComplement
+The elementary single-tape class $\mathrm{P}$ is closed under complement.
+% lax end Lax434930.SingleTapeComplement
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.ModelEquivalence.singleTape_closed_under_complement
+Transport complement closure across the proved equality of the single-tape and stack-machine classes.
+\qedhere
+% lax end Lax434930Proofs.ModelEquivalence.singleTape_closed_under_complement
+\end{proof}
+
+\section{Inclusions}
+The requested chain is
+\[
+\mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
+\subseteq\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
+\]
+The formal proofs currently cover the three statements below.
+The other three arrows, $\mathrm{NL}\subseteq\mathrm P$,
+$\mathrm{NP}\subseteq\mathrm{PSPACE}$, and
+$\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$, remain formal proof obligations.
+No completed proof assumes these obligations.
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.BasicProperties.L_subset_NL
+$\mathrm L\subseteq\mathrm{NL}$.
+% lax end Lax434930.BasicProperties.L_subset_NL
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.BasicProperties.L_subset_NL
+Use the same machine and the same logarithmic space bound. Removing the requirement that each local observation has at most one action allows nondeterminism without changing any run.
+\qedhere
+% lax end Lax434930Proofs.BasicProperties.L_subset_NL
+\end{proof}
+
+\begin{theorem}\leavevmode
+% lax begin Lax434930.BasicProperties.P_subset_NP
+$\mathrm P\subseteq\mathrm{NP}$.
+% lax end Lax434930.BasicProperties.P_subset_NP
+\end{theorem}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.P_subset_NP
+Let $f$ be a polynomial-time characteristic function for $A$. On an encoded input-certificate pair, a fixed finite stack machine extracts the first component in linear time. It scans the two-bit blocks before the delimiter, clears the unused suffix, and restores the extracted bits to their original order. Compose this projection with the machine for $f$. Polynomial-time composition gives a verifier language in $\mathrm P$. The zero polynomial is a certificate-length bound, and the empty certificate suffices. Decoding the first component proves the required equivalence with membership in $A$.
+\qedhere
+% lax end Lax434930Proofs.P_subset_NP
+\end{proof}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.BasicProperties.PSPACE_subset_NPSPACE
+$\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$.
+% lax end Lax434930.BasicProperties.PSPACE_subset_NPSPACE
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.BasicProperties.PSPACE_subset_NPSPACE
+Use the same machine and polynomial space bound, and remove the determinism requirement.
+\qedhere
+% lax end Lax434930Proofs.BasicProperties.PSPACE_subset_NPSPACE
+\end{proof}
+
+\section{An open question}
+\begin{question}[P versus NP]\leavevmode
+% lax begin Lax434930.PVersusNP
+The P versus NP problem asks whether every language with polynomially
+bounded, polynomial-time verifiable certificates can also be decided in
+deterministic polynomial time. We state the conjectured separation
+$\mathrm{P} \ne \mathrm{NP}$ as an open question.
+% lax end Lax434930.PVersusNP
+\end{question}
+
+This open question is not used by any formal proof in the submission.
+\end{document}

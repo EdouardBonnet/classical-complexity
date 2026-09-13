@@ -1,17 +1,16 @@
 # Classical Complexity Classes
 
-Lax submission `lax-434930`, defining **L, NL, P, NP, coNL, coNP, PSPACE,
+Lax submission [lax-434930](https://laxarchive.org/lax-434930/), defining **L, NL, P, NP, coNL, coNP, PSPACE,
 NPSPACE, and EXPTIME** as sets of languages of finite binary strings.
 
-The submission builds on [lax-554803](https://laxarchive.org/lax-554803/),
-at source commit `289e82d4351fe8c710add0dcbffd0290f016994e` of
-[EdouardBonnet/p-complement](https://github.com/EdouardBonnet/p-complement).
-It uses Lean `v4.30.0` and mathlib
-`c5ea00351c28e24afc9f0f84379aa41082b1188f`.
+This submission includes the definition of P, finite machine models, and their
+proved equivalences from [lax-554803](https://laxarchive.org/lax-554803/).
+It depends only on Mathlib and uses Lean `v4.33.0` with Mathlib commit
+`db584cd6d46c92f209a44c0f1c829460d327499d`.
 
 | Class | Definition | Concept |
 | --- | --- | --- |
-| P | The exact P definition from lax-554803 | [PolynomialTime](concepts/Lax434930/PolynomialTime.lean) |
+| P | Deterministic polynomial-time stack machines | [PolynomialTime](concepts/Lax434930/PolynomialTime.lean) |
 | NP | Polynomially bounded binary certificates, checked by a verifier language in P | [NondeterministicPolynomialTime](concepts/Lax434930/NondeterministicPolynomialTime.lean) |
 | coNP | Languages whose complements are in NP | [ComplementClasses](concepts/Lax434930/ComplementClasses.lean) |
 | L | Deterministic logarithmic work space | [LogarithmicSpace](concepts/Lax434930/LogarithmicSpace.lean) |
@@ -35,21 +34,26 @@ work cell visited on every branch, including cells that are blank or later
 erased. The logarithmic bound is a constant times `Nat.log 2 (n + 2)`, which
 is positive for the empty input.
 
-EXPTIME uses the elementary single-tape machines already defined by
-lax-554803. This lets the proof of P ⊆ EXPTIME use that submission's proved
-single-tape characterization of P. P itself is an abbreviation for the
-original class, so there is no new equivalence obligation for it.
+EXPTIME uses the elementary single-tape machines defined in this submission.
+The proof of P ⊆ EXPTIME uses the proved single-tape characterization of P.
+The definition of P is unchanged from the original stack-machine definition.
 
-The [basic properties](concepts/Lax434930/BasicProperties.lean) prove
-L ⊆ NL, L ⊆ PSPACE, NL ⊆ NPSPACE, PSPACE ⊆ NPSPACE, P ⊆ EXPTIME,
-`co (co C) = C`, and the universal-certificate characterization of coNP.
-All ten statements in these concepts have proofs. Only P ⊆ EXPTIME uses an
-external statement, the proved single-tape characterization from lax-554803.
-The remaining proofs have no statement assumptions.
+The [inclusion statements](concepts/Lax434930/BasicProperties.lean) are
+L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE ⊆ NPSPACE ⊆ EXPTIME.
+Proofs currently cover L ⊆ NL, P ⊆ NP, and PSPACE ⊆ NPSPACE.
+The other three statements are explicit proof obligations; see [PORT_STATUS.md](PORT_STATUS.md).
+The three certificate-encoding statements and the four incorporated results
+about P are proved. All completed proofs use only local statements or Mathlib.
+Redundant containments and the elementary complementation identities remain
+internal lemmas instead of separately exposed results.
 
 The [P versus NP question](concepts/Lax434930/PVersusNP.lean) states
 `P ≠ NP` as the axiom `Lax434930.PVersusNP.P_ne_NP`. It is the submission's
-only open statement and is not used by any proof.
+only open question; the three inclusion proof obligations are listed above.
+No completed proof uses the open question or the inclusion obligations.
+
+The [annotated companion](paper/main.tex) reproduces the class definition text
+and links statements and proof summaries to their formal counterparts.
 
 The [semantic audit](AUDIT.md) explains the definitions and their scope.
 [SpaceSemantics.lean](proofs/Lax434930Proofs/SpaceSemantics.lean) also checks
@@ -62,7 +66,7 @@ Run the archive checks with kernel replay from this directory:
 lax build . --replay
 ```
 
-For incremental proof development:
+To build the proof package:
 
 ```sh
 cd proofs

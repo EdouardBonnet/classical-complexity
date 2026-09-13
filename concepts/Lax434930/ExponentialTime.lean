@@ -1,5 +1,5 @@
 import Lax434930.PolynomialTime
-import Lax554803.MachineModels
+import Lax434930.MachineModels
 
 /-!
 ---
@@ -9,7 +9,7 @@ type: definition
 A binary language belongs to $\mathrm{EXPTIME}$ if a deterministic Turing
 machine decides membership within $2^{p(n)}$ transitions on every input
 of length $n$, for some polynomial $p\in\mathbb{N}[X]$.
-The machine is the finite elementary single-tape machine of lax-554803:
+The machine is the finite elementary single-tape machine defined here:
 input bits are distinct from blank, input appears in its original order,
 and each transition performs one move or one write. A terminal state's
 Boolean label gives the answer. The polynomial in the exponent may have
@@ -18,7 +18,7 @@ any fixed degree; this is the usual EXPTIME, also called EXP.
 
 namespace Lax434930.ExponentialTime
 
-open PolynomialTime Lax554803.MachineModels Turing
+open PolynomialTime Lax434930.MachineModels Turing
 
 /-- Deterministic time bounded by two to a polynomial in the input length. -/
 def EXPTIME : Set Language :=

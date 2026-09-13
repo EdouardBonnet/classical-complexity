@@ -1,6 +1,8 @@
 import Lax434930.PolynomialTime
 import Mathlib.Data.Finset.Basic
 
+set_option backward.isDefEq.respectTransparency false
+
 /-!
 ---
 title: Finite Turing machines with a read-only input tape
