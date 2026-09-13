@@ -1,4 +1,4 @@
-import Lax554803.PolynomialTime
+import Lax888664.PolynomialTime
 
 /-!
 ---
@@ -11,15 +11,15 @@ without modification: input is an ordinary binary string, output is one
 Boolean, and one machine and one polynomial work for all inputs.
 -/
 
-namespace Lax434930.PolynomialTime
+namespace Lax355705.PolynomialTime
 
 /-- A finite binary string, as in lax-554803. -/
-abbrev Word := Lax554803.PolynomialTime.Word
+abbrev Word := Lax888664.PolynomialTime.Word
 
 /-- A language of finite binary strings, as in lax-554803. -/
-abbrev Language := Lax554803.PolynomialTime.Language
+abbrev Language := Lax888664.PolynomialTime.Language
 
 /-- Deterministic polynomial time, exactly as defined in lax-554803. -/
-abbrev P : Set Language := Lax554803.PolynomialTime.P
+abbrev P : Set Language := Lax888664.PolynomialTime.P
 
-end Lax434930.PolynomialTime
+end Lax355705.PolynomialTime

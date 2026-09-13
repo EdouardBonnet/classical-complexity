@@ -10,7 +10,7 @@ choices may depend on the particular input.
 
 ## P, NP, coNP, and EXPTIME
 
-P is definitionally identical to `Lax554803.PolynomialTime.P`. Its
+P is definitionally identical to `Lax888664.PolynomialTime.P`. Its
 finite-alphabet and single-tape characterizations remain the results of
 the dependency. No old proof code is copied or required as a Lake package.
 
@@ -113,12 +113,12 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 The ten annotated proofs cover three encoding properties and
 seven elementary class properties. The only statement assumption is
-`Lax554803.ModelEquivalence.singleTapeP_eq_P`, used by P ⊆ EXPTIME; it is
+`Lax888664.ModelEquivalence.singleTapeP_eq_P`, used by P ⊆ EXPTIME; it is
 proved by lax-554803. Every other annotated proof declares an empty
 statement-assumption list, checked by the Lax inspector. Definitions do
 not use any concept statements.
 
-`Lax434930.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
+`Lax355705.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
 defined above. Its concept is labelled `open question`, it has no proof,
 and none of the proved statements depends on it. It is the submission's
 only open statement.

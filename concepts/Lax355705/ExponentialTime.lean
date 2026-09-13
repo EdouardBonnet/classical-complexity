@@ -1,5 +1,5 @@
-import Lax434930.PolynomialTime
-import Lax554803.MachineModels
+import Lax355705.PolynomialTime
+import Lax888664.MachineModels
 
 /-!
 ---
@@ -16,9 +16,9 @@ Boolean label gives the answer. The polynomial in the exponent may have
 any fixed degree; this is the usual EXPTIME, also called EXP.
 -/
 
-namespace Lax434930.ExponentialTime
+namespace Lax355705.ExponentialTime
 
-open PolynomialTime Lax554803.MachineModels Turing
+open PolynomialTime Lax888664.MachineModels Turing
 
 /-- Deterministic time bounded by two to a polynomial in the input length. -/
 def EXPTIME : Set Language :=
@@ -28,4 +28,4 @@ def EXPTIME : Set Language :=
         (TM0.init (w.map M.input)) (some c) (2 ^ p.eval w.length)) ∧
       TM0.step M.transition c = none ∧ (M.accept c.q = true ↔ w ∈ A)}
 
-end Lax434930.ExponentialTime
+end Lax355705.ExponentialTime

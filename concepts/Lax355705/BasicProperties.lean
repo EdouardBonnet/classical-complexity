@@ -1,9 +1,9 @@
-import Lax434930.LogarithmicSpace
-import Lax434930.NondeterministicLogarithmicSpace
-import Lax434930.PolynomialSpace
-import Lax434930.NondeterministicPolynomialSpace
-import Lax434930.ComplementClasses
-import Lax434930.ExponentialTime
+import Lax355705.LogarithmicSpace
+import Lax355705.NondeterministicLogarithmicSpace
+import Lax355705.PolynomialSpace
+import Lax355705.NondeterministicPolynomialSpace
+import Lax355705.ComplementClasses
+import Lax355705.ExponentialTime
 
 /-!
 ---
@@ -18,7 +18,7 @@ original class, and a language belongs to coNP exactly when every
 polynomially bounded certificate is rejected by a suitable P verifier.
 -/
 
-namespace Lax434930.BasicProperties
+namespace Lax355705.BasicProperties
 
 open PolynomialTime LogarithmicSpace NondeterministicLogarithmicSpace
 open PolynomialSpace NondeterministicPolynomialSpace ComplementClasses
@@ -41,4 +41,4 @@ axiom mem_coNP_iff (A : Language) : A ∈ coNP ↔
   ∃ V : Language, V ∈ P ∧ ∃ p : Polynomial ℕ, ∀ x : Word,
     x ∈ A ↔ ∀ y : Word, y.length ≤ p.eval x.length → pair x y ∉ V
 
-end Lax434930.BasicProperties
+end Lax355705.BasicProperties

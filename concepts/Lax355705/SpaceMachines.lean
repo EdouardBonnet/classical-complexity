@@ -1,5 +1,7 @@
-import Lax434930.PolynomialTime
+import Lax355705.PolynomialTime
 import Mathlib.Data.Finset.Basic
+
+set_option backward.isDefEq.respectTransparency false
 
 /-!
 ---
@@ -31,7 +33,7 @@ counter. The transition table sees neither head position nor the input
 length; it sees only the control state and scanned symbols.
 -/
 
-namespace Lax434930.SpaceMachines
+namespace Lax355705.SpaceMachines
 
 open PolynomialTime
 
@@ -138,4 +140,4 @@ def Machine.Deterministic (M : Machine) : Prop :=
 def Machine.UsesSpace (M : Machine) (w : Word) (s : ℕ) : Prop :=
   ∀ (n : ℕ) (c : M.Config), M.Run w n c → c.workHead < s
 
-end Lax434930.SpaceMachines
+end Lax355705.SpaceMachines

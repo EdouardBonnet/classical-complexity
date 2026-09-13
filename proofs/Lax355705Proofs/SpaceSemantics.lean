@@ -1,11 +1,11 @@
-import Lax434930.SpaceMachines
-import Lax434930.SpaceBounds
-import Lax434930.LogarithmicSpace
+import Lax355705.SpaceMachines
+import Lax355705.SpaceBounds
+import Lax355705.LogarithmicSpace
 import Mathlib.Tactic
 
-namespace Lax434930Proofs.SpaceSemantics
+namespace Lax355705Proofs.SpaceSemantics
 
-open Lax434930.PolynomialTime Lax434930.SpaceMachines Lax434930.SpaceBounds
+open Lax355705.PolynomialTime Lax355705.SpaceMachines Lax355705.SpaceBounds
 
 variable {M : Machine} {w : Word} {n s : ℕ} {c : M.Config}
 
@@ -96,7 +96,7 @@ theorem constant_decides (answer : Bool) :
 
 /-- Empty and universal languages really have deterministic logarithmic-space deciders. -/
 theorem constant_language_in_L (answer : Bool) :
-    { _w : Word | answer = true } ∈ Lax434930.LogarithmicSpace.L := by
+    { _w : Word | answer = true } ∈ Lax355705.LogarithmicSpace.L := by
   refine ⟨1, by decide, constantMachine answer, ?_, constant_decides answer, ?_⟩
   · intro q i b a ha
     exact (Finset.notMem_empty a ha).elim
@@ -105,4 +105,4 @@ theorem constant_language_in_L (answer : Bool) :
     simpa only [Machine.initial, one_mul, logSpace] using
       (Nat.log_pos (by decide : 1 < (2 : ℕ)) (by omega : 2 ≤ w.length + 2))
 
-end Lax434930Proofs.SpaceSemantics
+end Lax355705Proofs.SpaceSemantics

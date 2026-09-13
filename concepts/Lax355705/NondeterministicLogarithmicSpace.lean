@@ -1,4 +1,4 @@
-import Lax434930.SpaceBounds
+import Lax355705.SpaceBounds
 
 /-!
 ---
@@ -12,7 +12,7 @@ membership means that at least one branch accepts. The bound is
 $c\lfloor\log_2(n+2)\rfloor$ for one positive constant $c$.
 -/
 
-namespace Lax434930.NondeterministicLogarithmicSpace
+namespace Lax355705.NondeterministicLogarithmicSpace
 
 open PolynomialTime SpaceBounds
 
@@ -20,4 +20,4 @@ open PolynomialTime SpaceBounds
 def NL : Set Language :=
   {A | ∃ c : ℕ, 0 < c ∧ A ∈ NSPACE (fun n => c * logSpace n)}
 
-end Lax434930.NondeterministicLogarithmicSpace
+end Lax355705.NondeterministicLogarithmicSpace

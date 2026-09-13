@@ -1,13 +1,13 @@
-import Lax434930.Certificates
+import Lax355705.Certificates
 import Mathlib.Tactic
 
-namespace Lax434930Proofs.Certificates
+namespace Lax355705Proofs.Certificates
 
-open Lax434930.PolynomialTime Lax434930.Certificates
+open Lax355705.PolynomialTime Lax355705.Certificates
 
 /--
 ---
-conclusion: Lax434930.Certificates.unpair_pair
+conclusion: Lax355705.Certificates.unpair_pair
 assumptions:
 ---
 Induct on the first word, decoding one two-bit block at a time.
@@ -19,7 +19,7 @@ theorem unpair_pair (x y : Word) : unpair (pair x y) = some (x, y) := by
 
 /--
 ---
-conclusion: Lax434930.Certificates.pair_injective
+conclusion: Lax355705.Certificates.pair_injective
 assumptions:
 ---
 Apply the decoder to an equality of encodings.
@@ -31,7 +31,7 @@ theorem pair_injective : Function.Injective (fun p : Word × Word => pair p.1 p.
 
 /--
 ---
-conclusion: Lax434930.Certificates.pair_length
+conclusion: Lax355705.Certificates.pair_length
 assumptions:
 ---
 Each bit of the first word contributes two bits, and the delimiter contributes one.
@@ -43,4 +43,4 @@ theorem pair_length (x y : Word) : (pair x y).length = 2 * x.length + y.length +
     simp only [pair, List.length_cons, ih]
     omega
 
-end Lax434930Proofs.Certificates
+end Lax355705Proofs.Certificates

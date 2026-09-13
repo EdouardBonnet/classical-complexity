@@ -1,4 +1,4 @@
-import Lax434930.PolynomialTime
+import Lax355705.PolynomialTime
 
 /-!
 ---
@@ -12,7 +12,7 @@ the encoded length is a polynomial bound in the combined input and
 certificate lengths.
 -/
 
-namespace Lax434930.Certificates
+namespace Lax355705.Certificates
 
 open PolynomialTime
 
@@ -37,4 +37,4 @@ axiom pair_injective : Function.Injective (fun p : Word × Word => pair p.1 p.2)
 /-- The encoding has linear length in its two arguments. -/
 axiom pair_length (x y : Word) : (pair x y).length = 2 * x.length + y.length + 1
 
-end Lax434930.Certificates
+end Lax355705.Certificates

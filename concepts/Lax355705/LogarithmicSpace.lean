@@ -1,4 +1,4 @@
-import Lax434930.SpaceBounds
+import Lax355705.SpaceBounds
 
 /-!
 ---
@@ -11,7 +11,7 @@ input tape. Precisely, some positive constant $c$ bounds work space by
 $c\lfloor\log_2(n+2)\rfloor$ on every input of length $n$.
 -/
 
-namespace Lax434930.LogarithmicSpace
+namespace Lax355705.LogarithmicSpace
 
 open PolynomialTime SpaceBounds
 
@@ -19,4 +19,4 @@ open PolynomialTime SpaceBounds
 def L : Set Language :=
   {A | ∃ c : ℕ, 0 < c ∧ A ∈ DSPACE (fun n => c * logSpace n)}
 
-end Lax434930.LogarithmicSpace
+end Lax355705.LogarithmicSpace

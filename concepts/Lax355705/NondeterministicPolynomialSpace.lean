@@ -1,4 +1,4 @@
-import Lax434930.SpaceBounds
+import Lax355705.SpaceBounds
 
 /-!
 ---
@@ -13,7 +13,7 @@ when the input belongs to the language. The input tape is read-only and
 excluded from work space.
 -/
 
-namespace Lax434930.NondeterministicPolynomialSpace
+namespace Lax355705.NondeterministicPolynomialSpace
 
 open PolynomialTime SpaceBounds
 
@@ -21,4 +21,4 @@ open PolynomialTime SpaceBounds
 def NPSPACE : Set Language :=
   {A | ∃ p : Polynomial ℕ, A ∈ NSPACE p.eval}
 
-end Lax434930.NondeterministicPolynomialSpace
+end Lax355705.NondeterministicPolynomialSpace

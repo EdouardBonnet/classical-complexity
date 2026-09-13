@@ -1,4 +1,4 @@
-import Lax434930.SpaceMachines
+import Lax355705.SpaceMachines
 import Mathlib.Data.Nat.Log
 
 /-!
@@ -16,7 +16,7 @@ We use $\lfloor\log_2(n+2)\rfloor$ as a positive logarithmic bound, so
 empty inputs are included without a special case.
 -/
 
-namespace Lax434930.SpaceBounds
+namespace Lax355705.SpaceBounds
 
 open PolynomialTime SpaceMachines
 
@@ -32,4 +32,4 @@ def NSPACE (s : ℕ → ℕ) : Set Language :=
 /-- An integer logarithm that is positive even at input length zero. -/
 def logSpace (n : ℕ) : ℕ := Nat.log 2 (n + 2)
 
-end Lax434930.SpaceBounds
+end Lax355705.SpaceBounds

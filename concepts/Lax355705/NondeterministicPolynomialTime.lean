@@ -1,4 +1,4 @@
-import Lax434930.Certificates
+import Lax355705.Certificates
 
 /-!
 ---
@@ -15,7 +15,7 @@ input and certificate lengths. The certificate bound depends only on the
 original input length. This is the standard certificate definition of NP.
 -/
 
-namespace Lax434930.NondeterministicPolynomialTime
+namespace Lax355705.NondeterministicPolynomialTime
 
 open PolynomialTime Certificates
 
@@ -24,4 +24,4 @@ def NP : Set Language :=
   {A | ∃ V : Language, V ∈ P ∧ ∃ p : Polynomial ℕ, ∀ x : Word,
     x ∈ A ↔ ∃ y : Word, y.length ≤ p.eval x.length ∧ pair x y ∈ V}
 
-end Lax434930.NondeterministicPolynomialTime
+end Lax355705.NondeterministicPolynomialTime

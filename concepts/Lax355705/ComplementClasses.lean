@@ -1,5 +1,5 @@
-import Lax434930.NondeterministicLogarithmicSpace
-import Lax434930.NondeterministicPolynomialTime
+import Lax355705.NondeterministicLogarithmicSpace
+import Lax355705.NondeterministicPolynomialTime
 
 /-!
 ---
@@ -15,7 +15,7 @@ This operation complements each language; it does not take the set-theoretic
 complement of the class of languages.
 -/
 
-namespace Lax434930.ComplementClasses
+namespace Lax355705.ComplementClasses
 
 open PolynomialTime NondeterministicLogarithmicSpace NondeterministicPolynomialTime
 
@@ -28,4 +28,4 @@ def coNL : Set Language := co NL
 /-- Complements of languages in NP. -/
 def coNP : Set Language := co NP
 
-end Lax434930.ComplementClasses
+end Lax355705.ComplementClasses

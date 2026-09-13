@@ -1,4 +1,4 @@
-import Lax434930.SpaceBounds
+import Lax355705.SpaceBounds
 
 /-!
 ---
@@ -11,7 +11,7 @@ length $n$, for some polynomial $p\in\mathbb{N}[X]$. The input tape is
 read-only and excluded from work space, and the machine always halts.
 -/
 
-namespace Lax434930.PolynomialSpace
+namespace Lax355705.PolynomialSpace
 
 open PolynomialTime SpaceBounds
 
@@ -19,4 +19,4 @@ open PolynomialTime SpaceBounds
 def PSPACE : Set Language :=
   {A | ∃ p : Polynomial ℕ, A ∈ DSPACE p.eval}
 
-end Lax434930.PolynomialSpace
+end Lax355705.PolynomialSpace

@@ -1,5 +1,5 @@
-import Lax434930.PolynomialTime
-import Lax434930.NondeterministicPolynomialTime
+import Lax355705.PolynomialTime
+import Lax355705.NondeterministicPolynomialTime
 
 /-!
 ---
@@ -12,11 +12,11 @@ deterministic polynomial time. We state the conjectured separation
 $\mathrm{P} \ne \mathrm{NP}$ as an open question.
 -/
 
-namespace Lax434930.PVersusNP
+namespace Lax355705.PVersusNP
 
 open PolynomialTime NondeterministicPolynomialTime
 
 /-- The conjectured separation of P and NP, left as an open question. -/
 axiom P_ne_NP : P ≠ NP
 
-end Lax434930.PVersusNP
+end Lax355705.PVersusNP
