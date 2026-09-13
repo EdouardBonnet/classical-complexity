@@ -10,10 +10,10 @@ classes use finite Turing machines with a bounded, read-only input tape and a
 separate work tape, whose space is bounded on every computation branch.
 The displayed inclusions are
 $\mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
-\subseteq\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
+\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
 The current proofs establish [$\mathrm{L}\subseteq\mathrm{NL}$](paper.html#m27),
 [$\mathrm{P}\subseteq\mathrm{NP}$](paper.html#m29),
-[$\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$](paper.html#m31), and
+[$\mathrm{PSPACE}=\mathrm{NPSPACE}$](paper.html#m31), and
 [$\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$](paper.html#m33);
 the other inclusions are stated without proofs.
 We also state $\mathrm{P}\ne\mathrm{NP}$ as an open question.

@@ -33,13 +33,7 @@ theorem L_subset_NL : L ⊆ NL := by
   rintro A ⟨c, hc, h⟩
   exact ⟨c, hc, dspace_subset_nspace _ h⟩
 
-/--
----
-conclusion: Lax434930.BasicProperties.PSPACE_subset_NPSPACE
-assumptions:
----
-Use the same machine and polynomial, allowing nondeterminism.
--/
+/-- Use the same machine and polynomial, allowing nondeterminism. -/
 theorem PSPACE_subset_NPSPACE : PSPACE ⊆ NPSPACE := by
   rintro A ⟨p, h⟩
   exact ⟨p, dspace_subset_nspace _ h⟩

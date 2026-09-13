@@ -110,8 +110,8 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 ## Proof scope
 
-The completed proofs cover three certificate-encoding properties, four
-adjacent inclusions, and four results about P and its machine models.
+The completed proofs cover three certificate-encoding properties, three
+adjacent inclusions, PSPACE = NPSPACE, and four results about P and its machine models.
 The new proof of P ⊆ NP uses a finite stack machine that extracts the first
 component of the unchanged certificate-pair encoding in linear time, then
 composes it with the given polynomial-time decider.
@@ -153,8 +153,12 @@ reference to one of the source submission's twelve statement axioms is
 replaced by its actual proof declaration. One module is split to keep the
 Lean import graph acyclic.
 
-The dependency order is class definitions, then the local Savitch proof,
-then NPSPACE ⊆ EXPTIME. The copied Savitch files do not import the inclusion
-statements. Direct Lean axiom checks of both `polynomial_space` and
-`NPSPACE_subset_EXPTIME` list only `propext`, `Classical.choice`, and
-`Quot.sound`. Neither result uses a submission statement as an axiom.
+The dependency order is class definitions, then the local Savitch proof
+of PSPACE = NPSPACE, then NPSPACE ⊆ EXPTIME. The copied Savitch files do
+not import the inclusion statements. The equality is now exposed and has
+a proof with no statement assumptions. NPSPACE ⊆ EXPTIME explicitly cites
+this equality in the concept layer, so the archive displays that dependency.
+The closure audit must discharge it through the local equality proof.
+The current replay and closure audit do so. Direct axiom checks of the
+equality proof and the underlying `polynomial_space` theorem list only
+`propext`, `Classical.choice`, and `Quot.sound`.

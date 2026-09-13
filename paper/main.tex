@@ -19,7 +19,7 @@ We define classical complexity classes for languages of finite binary strings,
 using explicit time bounds, work-space bounds, and certificate encodings.
 The definition of $\mathrm P$ and its proved finite-stack and single-tape
 characterizations are included locally. We prove $\mathrm L\subseteq\mathrm{NL}$,
-$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
+$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
 as well as the stated encoding properties and closure of $\mathrm P$ under
 complement. The formalization uses Lean and Mathlib 4.33.0.
 \end{abstract}
@@ -287,7 +287,7 @@ Transport complement closure across the proved equality of the single-tape and s
 The requested chain is
 \[
 \mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
-\subseteq\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
+\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
 \]
 The formal proofs currently cover the four statements below.
 The other two arrows, $\mathrm{NL}\subseteq\mathrm P$ and
@@ -321,16 +321,20 @@ Let $f$ be a polynomial-time characteristic function for $A$. On an encoded inpu
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.PSPACE_subset_NPSPACE
-$\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}$.
-% lax end Lax434930.BasicProperties.PSPACE_subset_NPSPACE
+% lax begin Lax434930.BasicProperties.PSPACE_eq_NPSPACE
+$\mathrm{PSPACE}=\mathrm{NPSPACE}$.
+% lax end Lax434930.BasicProperties.PSPACE_eq_NPSPACE
 \end{lemma}
 
 \begin{proof}\leavevmode
-% lax begin Lax434930Proofs.BasicProperties.PSPACE_subset_NPSPACE
-Use the same machine and polynomial space bound, and remove the determinism requirement.
+% lax begin Lax434930Proofs.PSPACE_eq_NPSPACE
+Every deterministic machine is also a nondeterministic machine with the same
+space bound. Conversely, suppose a nondeterministic decider uses at most
+$p(n)$ work cells. Enlarge the bound to the constructible function
+$s(n)=p(n)+n+2$. The proved Savitch simulation gives a deterministic decider
+using at most $c\,s(n)^2$ work cells, which is a polynomial bound.
 \qedhere
-% lax end Lax434930Proofs.BasicProperties.PSPACE_subset_NPSPACE
+% lax end Lax434930Proofs.PSPACE_eq_NPSPACE
 \end{proof}
 
 \begin{lemma}\leavevmode

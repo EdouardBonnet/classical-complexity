@@ -12,7 +12,7 @@ type: theorem
 ---
 The classical classes satisfy
 $\mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
-\subseteq\mathrm{PSPACE}\subseteq\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
+\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
 -/
 
 namespace Lax434930.BasicProperties
@@ -29,7 +29,7 @@ axiom P_subset_NP : P ⊆ NP
 
 axiom NP_subset_PSPACE : NP ⊆ PSPACE
 
-axiom PSPACE_subset_NPSPACE : PSPACE ⊆ NPSPACE
+axiom PSPACE_eq_NPSPACE : PSPACE = NPSPACE
 
 axiom NPSPACE_subset_EXPTIME : NPSPACE ⊆ EXPTIME
 
