@@ -40,11 +40,11 @@ The definition of P is unchanged from the original stack-machine definition.
 
 The [inclusion statements](concepts/Lax434930/BasicProperties.lean) are
 L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE = NPSPACE ⊆ EXPTIME.
-Proofs currently cover L ⊆ NL, P ⊆ NP, PSPACE = NPSPACE, and NPSPACE ⊆ EXPTIME.
+Proofs currently cover L ⊆ NL, P ⊆ NP, NP ⊆ PSPACE, PSPACE = NPSPACE, and NPSPACE ⊆ EXPTIME.
 The [polynomial-space equality](concepts/Lax434930/PolynomialSpaceEquality.lean)
 has its own concept and checked proof. The proof network for NPSPACE ⊆ EXPTIME
 explicitly points to that equality.
-The other two statements are explicit proof obligations; see [PORT_STATUS.md](PORT_STATUS.md).
+NL ⊆ P remains an explicit proof obligation; see [PORT_STATUS.md](PORT_STATUS.md).
 The three certificate-encoding statements and the four incorporated results
 about P are proved. All completed proofs use only local statements or Mathlib.
 Redundant containments and the elementary complementation identities remain
@@ -52,7 +52,7 @@ internal lemmas instead of separately exposed results.
 
 The [P versus NP question](concepts/Lax434930/PVersusNP.lean) states
 `P ≠ NP` as the axiom `Lax434930.PVersusNP.P_ne_NP`. It is the submission's
-only open question; the two inclusion proof obligations are listed above.
+only open question; the remaining inclusion proof obligation is listed above.
 No completed proof uses the open question or the inclusion obligations.
 
 The [annotated companion](paper/main.tex) reproduces the class definition text
@@ -65,6 +65,15 @@ proofs are included locally with attribution; references to its concept
 axioms are replaced by the corresponding proved declarations. They depend
 on the class definitions, not on the inclusion being proved. This avoids
 an archive dependency back to the separate Savitch submission.
+
+The NP ⊆ PSPACE proof constructs a finite nondeterministic certificate
+verifier, proves a polynomial bound on every branch's work space, and
+uses the local polynomial-space equality. Its nondeterministic stack
+compiler and bounded bit generator come from
+[lax-733996](https://laxarchive.org/lax-733996/), source commit
+`fae3750ccee617c7f97680c6f1ceef3996b3f47e`. These helper proofs are included
+locally under the source Apache-2.0 license, with namespace and Mathlib
+4.33.0 compatibility edits. They import no statements from that submission.
 
 The [semantic audit](AUDIT.md) explains the definitions and their scope.
 [SpaceSemantics.lean](proofs/Lax434930Proofs/SpaceSemantics.lean) also checks

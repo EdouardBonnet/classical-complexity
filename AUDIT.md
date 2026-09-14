@@ -110,15 +110,25 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 ## Proof scope
 
-The completed proofs cover three certificate-encoding properties, three
+The completed proofs cover three certificate-encoding properties, four
 adjacent inclusions, PSPACE = NPSPACE, and four results about P and its machine models.
 The new proof of P ⊆ NP uses a finite stack machine that extracts the first
 component of the unchanged certificate-pair encoding in linear time, then
 composes it with the given polynomial-time decider.
 
-NL ⊆ P and NP ⊆ PSPACE currently have no
-formal proof in this submission. They are recorded as explicit proof obligations.
-No completed proof uses either of these two statements.
+NP ⊆ PSPACE uses a finite nondeterministic machine that guesses a word of
+length `2 * p.eval n + 1` and decodes its first component. This gives every
+certificate of length at most `p.eval n`, including the empty certificate.
+The unchanged pair encoding is constructed before the original verifier
+runs. Each simulated stack is bounded by input length plus the verifier's
+step count times a fixed instruction-block constant. A checked compiler
+translates this program to the finite work-tape machine model and proves
+that every branch halts within polynomial space. The local Savitch equality
+then gives deterministic polynomial space. A direct axiom check of the
+composed proof lists only `propext`, `Classical.choice`, and `Quot.sound`.
+
+NL ⊆ P currently has no formal proof in this submission and remains an
+explicit proof obligation. No completed proof uses that statement.
 
 `Lax434930.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
 defined above. Its concept is labelled `open question`, it has no proof,
@@ -138,9 +148,9 @@ The stack-machine definition of P and the finite machine models from the cited
 P submission are now defined here. Their four results and complete proofs are
 also included. All imported names were moved into the local submission
 namespace; the mathematical definitions and statements are unchanged.
-The new inclusion chain has two explicitly unproved statements, listed in
+The new inclusion chain has one explicitly unproved statement, listed in
 PORT_STATUS.md. P ≠ NP remains an open question. No completed proof uses
-any of these three statements.
+either statement.
 
 ## Savitch proof dependencies
 
@@ -162,3 +172,13 @@ The closure audit must discharge it through the local equality proof.
 The current replay and closure audit do so. Direct axiom checks of the
 equality proof and the underlying `polynomial_space` theorem list only
 `propext`, `Classical.choice`, and `Quot.sound`.
+
+## Nondeterministic compiler dependencies
+
+Thirteen helper modules in `InclusionAux/ChoiceProofs` originate in
+[lax-733996](https://laxarchive.org/lax-733996/), source commit
+`fae3750ccee617c7f97680c6f1ceef3996b3f47e`. They retain the source
+Apache-2.0 license. They prove the finite nondeterministic stack compiler,
+all-branch termination and space preservation, and bounded bit generation.
+Their namespace and imports now refer only to local checked helpers;
+the former archive's concept statements are not imported.

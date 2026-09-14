@@ -19,7 +19,7 @@ We define classical complexity classes for languages of finite binary strings,
 using explicit time bounds, work-space bounds, and certificate encodings.
 The definition of $\mathrm P$ and its proved finite-stack and single-tape
 characterizations are included locally. We prove $\mathrm L\subseteq\mathrm{NL}$,
-$\mathrm P\subseteq\mathrm{NP}$, and $\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
+$\mathrm P\subseteq\mathrm{NP}\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
 as well as the stated encoding properties and closure of $\mathrm P$ under
 complement. The formalization uses Lean and Mathlib 4.33.0.
 \end{abstract}
@@ -289,10 +289,9 @@ The requested chain is
 \mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
 \subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
 \]
-The formal proofs currently cover the four statements below.
-The other two arrows, $\mathrm{NL}\subseteq\mathrm P$ and
-$\mathrm{NP}\subseteq\mathrm{PSPACE}$, remain formal proof obligations.
-No completed proof assumes these obligations.
+The formal proofs currently cover the five statements below.
+The arrow $\mathrm{NL}\subseteq\mathrm P$ remains a formal proof obligation.
+No completed proof assumes this obligation.
 
 \begin{lemma}\leavevmode
 % lax begin Lax434930.BasicProperties.L_subset_NL
@@ -318,6 +317,30 @@ $\mathrm P\subseteq\mathrm{NP}$.
 Let $f$ be a polynomial-time characteristic function for $A$. On an encoded input-certificate pair, a fixed finite stack machine extracts the first component in linear time. It scans the two-bit blocks before the delimiter, clears the unused suffix, and restores the extracted bits to their original order. Compose this projection with the machine for $f$. Polynomial-time composition gives a verifier language in $\mathrm P$. The zero polynomial is a certificate-length bound, and the empty certificate suffices. Decoding the first component proves the required equivalence with membership in $A$.
 \qedhere
 % lax end Lax434930Proofs.P_subset_NP
+\end{proof}
+
+\begin{lemma}\leavevmode
+% lax begin Lax434930.BasicProperties.NP_subset_PSPACE
+$\mathrm{NP}\subseteq\mathrm{PSPACE}$.
+% lax end Lax434930.BasicProperties.NP_subset_PSPACE
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.NP_subset_PSPACE
+Let $p$ bound the certificate length, and fix a polynomial-time verifier.
+A finite nondeterministic machine constructs a unary supply of
+$2p(n)+1$ symbols and guesses one bit for each symbol. Decoding the first
+component of the guessed word produces a certificate of length at most
+$p(n)$. Every permitted certificate occurs, since its encoding can be
+padded to exactly $2p(n)+1$ bits. The machine constructs the original
+input--certificate pair and simulates the verifier with finite control
+and a finite work alphabet. Its stack lengths are bounded by the encoded
+input length plus a constant times the verifier's running time. This is
+a polynomial in $n$, and every branch halts. Thus the language belongs to
+$\mathrm{NPSPACE}$; the proved equality
+$\mathrm{PSPACE}=\mathrm{NPSPACE}$ gives the conclusion.
+\qedhere
+% lax end Lax434930Proofs.NP_subset_PSPACE
 \end{proof}
 
 \begin{lemma}\leavevmode
