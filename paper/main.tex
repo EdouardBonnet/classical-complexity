@@ -187,9 +187,9 @@ any fixed degree; this is the usual EXPTIME, also called EXP.
 \section{Encoding properties}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.Certificates.unpair_pair
+% lax begin Lax434930.Certificates
 Decoding $\langle x,y\rangle$ returns exactly $(x,y)$.
-% lax end Lax434930.Certificates.unpair_pair
+% lax end Lax434930.Certificates
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -200,9 +200,9 @@ Induct on $x$. The empty word contributes only the delimiter; each additional bi
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.Certificates.pair_injective
+% lax begin Lax434930.Certificates
 The function $(x,y)\mapsto\langle x,y\rangle$ is injective.
-% lax end Lax434930.Certificates.pair_injective
+% lax end Lax434930.Certificates
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -213,9 +213,9 @@ Apply the decoder to an equality of encodings and use the preceding decoding ide
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.Certificates.pair_length
+% lax begin Lax434930.Certificates
 The encoded pair has length $|\langle x,y\rangle|=2|x|+|y|+1$.
-% lax end Lax434930.Certificates.pair_length
+% lax end Lax434930.Certificates
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -264,10 +264,10 @@ binary strings.
 \end{lemma}
 
 \begin{proof}\leavevmode
-% lax begin Lax434930Proofs.ComplementClosure.closed_under_complement
+% lax begin Lax434930Proofs.closed_under_complement
 Compose the output-alphabet equivalence with Boolean negation. The unchanged execution then returns the opposite Boolean answer with the same polynomial bound. Negating the correctness equivalence identifies the complementary language.
 \qedhere
-% lax end Lax434930Proofs.ComplementClosure.closed_under_complement
+% lax end Lax434930Proofs.closed_under_complement
 \end{proof}
 
 \begin{lemma}[Single-tape P is closed under complement]\leavevmode
@@ -296,9 +296,9 @@ The classes satisfy
 The following six statements prove each inclusion and the equality.
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.L_subset_NL
+% lax begin Lax434930.BasicProperties
 $\mathrm L\subseteq\mathrm{NL}$.
-% lax end Lax434930.BasicProperties.L_subset_NL
+% lax end Lax434930.BasicProperties
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -309,9 +309,9 @@ Use the same machine and the same logarithmic space bound. Removing the requirem
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.NL_subset_P
+% lax begin Lax434930.BasicProperties
 $\mathrm{NL}\subseteq\mathrm P$.
-% lax end Lax434930.BasicProperties.NL_subset_P
+% lax end Lax434930.BasicProperties
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -335,9 +335,9 @@ definition of $\mathrm P$.
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.P_subset_NP
+% lax begin Lax434930.BasicProperties
 $\mathrm P\subseteq\mathrm{NP}$.
-% lax end Lax434930.BasicProperties.P_subset_NP
+% lax end Lax434930.BasicProperties
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -348,9 +348,9 @@ Let $f$ be a polynomial-time characteristic function for $A$. On an encoded inpu
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.NP_subset_PSPACE
+% lax begin Lax434930.BasicProperties
 $\mathrm{NP}\subseteq\mathrm{PSPACE}$.
-% lax end Lax434930.BasicProperties.NP_subset_PSPACE
+% lax end Lax434930.BasicProperties
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -372,9 +372,9 @@ $\mathrm{PSPACE}=\mathrm{NPSPACE}$ gives the conclusion.
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE
+% lax begin Lax434930.PolynomialSpaceEquality
 $\mathrm{PSPACE}=\mathrm{NPSPACE}$.
-% lax end Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE
+% lax end Lax434930.PolynomialSpaceEquality
 \end{lemma}
 
 \begin{proof}\leavevmode
@@ -389,9 +389,9 @@ using at most $c\,s(n)^2$ work cells, which is a polynomial bound.
 \end{proof}
 
 \begin{lemma}\leavevmode
-% lax begin Lax434930.BasicProperties.NPSPACE_subset_EXPTIME
+% lax begin Lax434930.BasicProperties
 $\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$.
-% lax end Lax434930.BasicProperties.NPSPACE_subset_EXPTIME
+% lax end Lax434930.BasicProperties
 \end{lemma}
 
 \begin{proof}\leavevmode
