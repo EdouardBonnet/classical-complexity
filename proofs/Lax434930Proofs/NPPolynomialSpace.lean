@@ -13,8 +13,8 @@ assumptions:
 ---
 A finite nondeterministic machine guesses a bounded certificate and runs
 the original polynomial-time verifier within polynomial work space.
-The proved equality of deterministic and nondeterministic polynomial
-space then gives the inclusion.
+Savitch's theorem, proved separately, then gives deterministic polynomial
+space and the inclusion.
 -/
 theorem NP_subset_PSPACE : NP ⊆ PSPACE := by
   rw [Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE]

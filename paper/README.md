@@ -9,9 +9,11 @@ Proof markers start inside proof environments and end after the explicit QED
 marker. Static validation accepts all 40 annotations, and reflow extraction
 places every start inside its matching paragraph. This includes the exposed
 NL ⊆ P statement and proof at annotations 30 and 31,
-NP ⊆ PSPACE at annotations 34 and 35, and
-PSPACE = NPSPACE at annotations 36 and 37.
-The complete chain is the main theorem; its supporting statements are lemmas.
+Savitch's theorem (PSPACE = NPSPACE) at annotations 34 and 35, and
+NP ⊆ PSPACE at annotations 36 and 37.
+Savitch's theorem is stated and proved before NP ⊆ PSPACE, whose proof
+cites it by name and theorem number. The complete chain is the main theorem;
+the remaining supporting statements are lemmas.
 Statement passages link to their containing concept, as required by the
 archive. Repeated concept targets have distinct numbered passage anchors,
 so the abstract still points to each exact statement in the paper. Proof
@@ -19,7 +21,7 @@ passages link to the declarations carrying the proof metadata. All targets
 are checked directly against the inspected concept and proof identifiers.
 
 The marked and unmarked PDFs each have five pages and exactly the same
-2,241 body words. The marker package can change vertical spacing and page
+2,249 body words. The marker package can change vertical spacing and page
 breaks; the body-text comparison checks that annotations preserve the text.
 Page-number positions were excluded from the body-text comparison.
 Direct pdflatex and lualatex checks were used because the installed latexmk

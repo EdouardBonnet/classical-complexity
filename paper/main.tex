@@ -347,6 +347,23 @@ Let $f$ be a polynomial-time characteristic function for $A$. On an encoded inpu
 % lax end Lax434930Proofs.P_subset_NP
 \end{proof}
 
+\begin{theorem}[Savitch's theorem]\label{thm:savitch}\leavevmode
+% lax begin Lax434930.PolynomialSpaceEquality
+$\mathrm{PSPACE}=\mathrm{NPSPACE}$.
+% lax end Lax434930.PolynomialSpaceEquality
+\end{theorem}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.PSPACE_eq_NPSPACE
+Every deterministic machine is also a nondeterministic machine with the same
+space bound. Conversely, suppose a nondeterministic decider uses at most
+$p(n)$ work cells. Enlarge the bound to the constructible function
+$s(n)=p(n)+n+2$. The proved Savitch simulation gives a deterministic decider
+using at most $c\,s(n)^2$ work cells, which is a polynomial bound.
+\qedhere
+% lax end Lax434930Proofs.PSPACE_eq_NPSPACE
+\end{proof}
+
 \begin{lemma}\leavevmode
 % lax begin Lax434930.BasicProperties
 $\mathrm{NP}\subseteq\mathrm{PSPACE}$.
@@ -365,27 +382,10 @@ input--certificate pair and simulates the verifier with finite control
 and a finite work alphabet. Its stack lengths are bounded by the encoded
 input length plus a constant times the verifier's running time. This is
 a polynomial in $n$, and every branch halts. Thus the language belongs to
-$\mathrm{NPSPACE}$; the proved equality
-$\mathrm{PSPACE}=\mathrm{NPSPACE}$ gives the conclusion.
+$\mathrm{NPSPACE}$. Savitch's theorem (Theorem~\ref{thm:savitch}),
+proved above, gives $\mathrm{PSPACE}=\mathrm{NPSPACE}$ and hence the conclusion.
 \qedhere
 % lax end Lax434930Proofs.NP_subset_PSPACE
-\end{proof}
-
-\begin{lemma}\leavevmode
-% lax begin Lax434930.PolynomialSpaceEquality
-$\mathrm{PSPACE}=\mathrm{NPSPACE}$.
-% lax end Lax434930.PolynomialSpaceEquality
-\end{lemma}
-
-\begin{proof}\leavevmode
-% lax begin Lax434930Proofs.PSPACE_eq_NPSPACE
-Every deterministic machine is also a nondeterministic machine with the same
-space bound. Conversely, suppose a nondeterministic decider uses at most
-$p(n)$ work cells. Enlarge the bound to the constructible function
-$s(n)=p(n)+n+2$. The proved Savitch simulation gives a deterministic decider
-using at most $c\,s(n)^2$ work cells, which is a polynomial bound.
-\qedhere
-% lax end Lax434930Proofs.PSPACE_eq_NPSPACE
 \end{proof}
 
 \begin{lemma}\leavevmode

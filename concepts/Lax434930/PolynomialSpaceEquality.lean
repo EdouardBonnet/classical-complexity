@@ -3,10 +3,10 @@ import Lax434930.NondeterministicPolynomialSpace
 
 /-!
 ---
-title: Deterministic and nondeterministic polynomial space coincide
-type: lemma
+title: Savitch's theorem
+type: theorem
 ---
-Savitch's simulation gives
+The polynomial-space form of Savitch's theorem is
 $\mathrm{PSPACE}=\mathrm{NPSPACE}$.
 -/
 
