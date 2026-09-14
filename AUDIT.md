@@ -110,7 +110,7 @@ L, checking that the definitions are nonvacuous and handle empty inputs.
 
 ## Proof scope
 
-The completed proofs cover three certificate-encoding properties, four
+The completed proofs cover three certificate-encoding properties, five
 adjacent inclusions, PSPACE = NPSPACE, and four results about P and its machine models.
 The new proof of P ⊆ NP uses a finite stack machine that extracts the first
 component of the unchanged certificate-pair encoding in linear time, then
@@ -127,8 +127,18 @@ that every branch halts within polynomial space. The local Savitch equality
 then gives deterministic polynomial space. A direct axiom check of the
 composed proof lists only `propext`, `Classical.choice`, and `Quot.sound`.
 
-NL ⊆ P currently has no formal proof in this submission and remains an
-explicit proof obligation. No completed proof uses that statement.
+NL ⊆ P uses a fixed-radix encoding of the work tape together with the
+control state and both head positions. For a logarithmic space bound the
+candidate universe is polynomial in input length. Every reachable original
+configuration fits this universe and decodes exactly. The edge test is
+proved equivalent to one original transition, including equality of the
+work tapes beyond the finite comparison range. A Boolean reachability
+table is iterated for the proved polynomial bound on branch length, and
+its accepting-terminal test is equivalent to the original acceptance
+predicate. A finite deterministic stack program implements all the
+bounded loops, arithmetic, and table operations in polynomial time.
+Both the final theorem and its machine construction have direct axiom
+checks listing only `propext`, `Classical.choice`, and `Quot.sound`.
 
 `Lax434930.PVersusNP.P_ne_NP` states `P ≠ NP` using exactly the classes
 defined above. Its concept is labelled `open question`, it has no proof,
@@ -148,9 +158,8 @@ The stack-machine definition of P and the finite machine models from the cited
 P submission are now defined here. Their four results and complete proofs are
 also included. All imported names were moved into the local submission
 namespace; the mathematical definitions and statements are unchanged.
-The new inclusion chain has one explicitly unproved statement, listed in
-PORT_STATUS.md. P ≠ NP remains an open question. No completed proof uses
-either statement.
+Every statement in the inclusion chain is proved. P ≠ NP remains an open
+question, and no proof uses it.
 
 ## Savitch proof dependencies
 
@@ -182,3 +191,18 @@ Apache-2.0 license. They prove the finite nondeterministic stack compiler,
 all-branch termination and space preservation, and bounded bit generation.
 Their namespace and imports now refer only to local checked helpers;
 the former archive's concept statements are not imported.
+
+## Deterministic compiler dependencies
+
+The modules in `InclusionAux/TimeCompiler` and the reused arithmetic and
+streaming modules in `InclusionAux/TimeHelpers` originate in
+[lax-429075](https://laxarchive.org/lax-429075/), source commit
+`3481a9cc2e2693124717e398f443f8053629d730`, by Édouard Bonnet and
+gpt-6-astra, and
+[lax-979537](https://laxarchive.org/lax-979537/), source commit
+`82ef67e68fab884dc4cff117a1b871567bdaaafd`, by Szymon Toruńczyk and
+Codex 6. They retain the source Apache-2.0 licenses. Namespace changes
+and compatibility edits port these closed helper proofs to Mathlib 4.33.0.
+The new bounded-iteration compiler, capped arithmetic, and Boolean-output
+machine use those checked helpers. Neither the Cook–Levin theorem nor the
+Immerman–Vardi theorem is an assumption of this proof package.

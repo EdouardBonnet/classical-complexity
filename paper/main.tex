@@ -18,8 +18,8 @@
 We define classical complexity classes for languages of finite binary strings,
 using explicit time bounds, work-space bounds, and certificate encodings.
 The definition of $\mathrm P$ and its proved finite-stack and single-tape
-characterizations are included locally. We prove $\mathrm L\subseteq\mathrm{NL}$,
-$\mathrm P\subseteq\mathrm{NP}\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
+characterizations are included locally. We prove
+$\mathrm L\subseteq\mathrm{NL}\subseteq\mathrm P\subseteq\mathrm{NP}\subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$,
 as well as the stated encoding properties and closure of $\mathrm P$ under
 complement. The formalization uses Lean and Mathlib 4.33.0.
 \end{abstract}
@@ -284,14 +284,16 @@ Transport complement closure across the proved equality of the single-tape and s
 \end{proof}
 
 \section{Inclusions}
-The requested chain is
+\begin{theorem}[The inclusion chain]\leavevmode
+% lax begin Lax434930.BasicProperties
+The classes satisfy
 \[
 \mathrm{L}\subseteq\mathrm{NL}\subseteq\mathrm{P}\subseteq\mathrm{NP}
 \subseteq\mathrm{PSPACE}=\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}.
 \]
-The formal proofs currently cover the five statements below.
-The arrow $\mathrm{NL}\subseteq\mathrm P$ remains a formal proof obligation.
-No completed proof assumes this obligation.
+% lax end Lax434930.BasicProperties
+\end{theorem}
+The following six statements prove each inclusion and the equality.
 
 \begin{lemma}\leavevmode
 % lax begin Lax434930.BasicProperties.L_subset_NL
@@ -306,11 +308,37 @@ Use the same machine and the same logarithmic space bound. Removing the requirem
 % lax end Lax434930Proofs.BasicProperties.L_subset_NL
 \end{proof}
 
-\begin{theorem}\leavevmode
+\begin{lemma}\leavevmode
+% lax begin Lax434930.BasicProperties.NL_subset_P
+$\mathrm{NL}\subseteq\mathrm P$.
+% lax end Lax434930.BasicProperties.NL_subset_P
+\end{lemma}
+
+\begin{proof}\leavevmode
+% lax begin Lax434930Proofs.NL_subset_P
+Fix a nondeterministic decider using at most $c\log_2(n+2)$ work cells.
+Encode its state, input head, work head, and work-tape contents by a single
+integer. Encoding the tape in a fixed radix gives polynomially many
+candidate configurations, and every reachable configuration has an exact
+encoding. A finite program checks an edge by comparing the local transition
+and the finitely many possibly nonblank tape cells. Starting with the
+initial configuration marked, repeatedly mark every successor of a marked
+configuration. Each round scans polynomially many candidates; the proved
+configuration bound gives a polynomial number of rounds sufficient for every
+halting branch. An accepting terminal configuration is marked exactly when
+the original machine accepts. A checked compiler implements the bounded
+loops and table operations on a finite deterministic stack machine with
+polynomial running time, giving a characteristic function in the original
+definition of $\mathrm P$.
+\qedhere
+% lax end Lax434930Proofs.NL_subset_P
+\end{proof}
+
+\begin{lemma}\leavevmode
 % lax begin Lax434930.BasicProperties.P_subset_NP
 $\mathrm P\subseteq\mathrm{NP}$.
 % lax end Lax434930.BasicProperties.P_subset_NP
-\end{theorem}
+\end{lemma}
 
 \begin{proof}\leavevmode
 % lax begin Lax434930Proofs.P_subset_NP

@@ -40,11 +40,10 @@ The definition of P is unchanged from the original stack-machine definition.
 
 The [inclusion statements](concepts/Lax434930/BasicProperties.lean) are
 L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE = NPSPACE ⊆ EXPTIME.
-Proofs currently cover L ⊆ NL, P ⊆ NP, NP ⊆ PSPACE, PSPACE = NPSPACE, and NPSPACE ⊆ EXPTIME.
+All five adjacent inclusions and the polynomial-space equality are proved.
 The [polynomial-space equality](concepts/Lax434930/PolynomialSpaceEquality.lean)
 has its own concept and checked proof. The proof network for NPSPACE ⊆ EXPTIME
 explicitly points to that equality.
-NL ⊆ P remains an explicit proof obligation; see [PORT_STATUS.md](PORT_STATUS.md).
 The three certificate-encoding statements and the four incorporated results
 about P are proved. All completed proofs use only local statements or Mathlib.
 Redundant containments and the elementary complementation identities remain
@@ -52,8 +51,7 @@ internal lemmas instead of separately exposed results.
 
 The [P versus NP question](concepts/Lax434930/PVersusNP.lean) states
 `P ≠ NP` as the axiom `Lax434930.PVersusNP.P_ne_NP`. It is the submission's
-only open question; the remaining inclusion proof obligation is listed above.
-No completed proof uses the open question or the inclusion obligations.
+only open question. No proof uses the open question.
 
 The [annotated companion](paper/main.tex) reproduces the class definition text
 and links statements and proof summaries to their formal counterparts.
@@ -74,6 +72,17 @@ compiler and bounded bit generator come from
 `fae3750ccee617c7f97680c6f1ceef3996b3f47e`. These helper proofs are included
 locally under the source Apache-2.0 license, with namespace and Mathlib
 4.33.0 compatibility edits. They import no statements from that submission.
+
+The NL ⊆ P proof constructs a finite deterministic stack machine for
+reachability in a polynomial-size encoding of the original space machine's
+configurations. Its bounded loops, tape comparisons, and table updates have
+checked polynomial time bounds. The stack compiler and arithmetic routines
+reuse closed helpers from [lax-429075](https://laxarchive.org/lax-429075/),
+source commit `3481a9cc2e2693124717e398f443f8053629d730`, and
+[lax-979537](https://laxarchive.org/lax-979537/), source commit
+`82ef67e68fab884dc4cff117a1b871567bdaaafd`. These Apache-2.0 helpers are
+included locally with namespace and Mathlib 4.33.0 compatibility edits.
+No theorem or concept axiom from either entry is imported.
 
 The [semantic audit](AUDIT.md) explains the definitions and their scope.
 [SpaceSemantics.lean](proofs/Lax434930Proofs/SpaceSemantics.lean) also checks
