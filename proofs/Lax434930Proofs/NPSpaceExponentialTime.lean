@@ -10,7 +10,7 @@ open Lax434930.ExponentialTime
 ---
 conclusion: Lax434930.BasicProperties.NPSPACE_subset_EXPTIME
 assumptions:
-  - Lax434930.BasicProperties.PSPACE_eq_NPSPACE
+  - Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE
 ---
 Apply the proved Savitch simulation, bound the deterministic machine's run
 length by its configuration count, and use the time-bounded stack and tape simulations.
@@ -18,7 +18,7 @@ length by its configuration count, and use the time-bounded stack and tape simul
 theorem NPSPACE_subset_EXPTIME : NPSPACE ⊆ EXPTIME := by
   intro A h
   apply SpaceExponentialTime.PSPACE_subset_EXPTIME
-  rw [Lax434930.BasicProperties.PSPACE_eq_NPSPACE]
+  rw [Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE]
   exact h
 
 end Lax434930Proofs

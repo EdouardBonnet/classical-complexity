@@ -41,6 +41,9 @@ The definition of P is unchanged from the original stack-machine definition.
 The [inclusion statements](concepts/Lax434930/BasicProperties.lean) are
 L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE = NPSPACE ⊆ EXPTIME.
 Proofs currently cover L ⊆ NL, P ⊆ NP, PSPACE = NPSPACE, and NPSPACE ⊆ EXPTIME.
+The [polynomial-space equality](concepts/Lax434930/PolynomialSpaceEquality.lean)
+has its own concept and checked proof. The proof network for NPSPACE ⊆ EXPTIME
+explicitly points to that equality.
 The other two statements are explicit proof obligations; see [PORT_STATUS.md](PORT_STATUS.md).
 The three certificate-encoding statements and the four incorporated results
 about P are proved. All completed proofs use only local statements or Mathlib.

@@ -4,6 +4,7 @@ import Lax434930.PolynomialSpace
 import Lax434930.NondeterministicPolynomialSpace
 import Lax434930.ComplementClasses
 import Lax434930.ExponentialTime
+import Lax434930.PolynomialSpaceEquality
 
 /-!
 ---
@@ -28,8 +29,6 @@ axiom NL_subset_P : NL ⊆ P
 axiom P_subset_NP : P ⊆ NP
 
 axiom NP_subset_PSPACE : NP ⊆ PSPACE
-
-axiom PSPACE_eq_NPSPACE : PSPACE = NPSPACE
 
 axiom NPSPACE_subset_EXPTIME : NPSPACE ⊆ EXPTIME
 

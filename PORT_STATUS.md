@@ -24,11 +24,14 @@ Do not publish as a closed proof network until these two obligations are
 proved, unless the user explicitly authorizes a draft with open proof obligations.
 
 Validation: `lax build --replay` passes, including kernel replay and
-statement inspection (18 concepts, 11 proofs). The closure audit reports
+statement inspection. The closure audit reports
 11 of 14 statements closed. The two inclusion obligations and the P versus
 NP open question remain. The equality and its use by NPSPACE ⊆ EXPTIME
-form a closed, acyclic proof network. The prescribed audits for the three
-existing complexity results pass.
+form a closed, acyclic proof network. The equality has its own concept
+to prevent a cycle caused by grouping distinct statements in the display.
+Replay, the closure audit, and the browser check all pass for that grouping
+(19 concepts, 11 proofs); the rendered graph no longer reports a cycle.
+The prescribed audits for the three existing complexity results pass.
 
 Static validation accepts all 35 annotations. Direct PDF compilation
 produces five pages, and reflow extraction places all 35 starts inside the

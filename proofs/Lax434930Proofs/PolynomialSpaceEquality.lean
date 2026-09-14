@@ -1,4 +1,4 @@
-import Lax434930.BasicProperties
+import Lax434930.PolynomialSpaceEquality
 import Lax434930Proofs.SavitchProofs.Savitch
 
 namespace Lax434930Proofs
@@ -7,7 +7,7 @@ open Lax434930.PolynomialSpace Lax434930.NondeterministicPolynomialSpace
 
 /--
 ---
-conclusion: Lax434930.BasicProperties.PSPACE_eq_NPSPACE
+conclusion: Lax434930.PolynomialSpaceEquality.PSPACE_eq_NPSPACE
 assumptions:
 ---
 Deterministic machines are special cases of nondeterministic machines.

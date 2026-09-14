@@ -16,3 +16,4 @@ import Lax434930.PolynomialTime
 import Lax434930.SingleTapeComplement
 import Lax434930.SpaceBounds
 import Lax434930.SpaceMachines
+import Lax434930.PolynomialSpaceEquality
