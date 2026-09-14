@@ -13,6 +13,6 @@ We prove the full chain through
 [$\mathrm{NL}\subseteq\mathrm P$](paper.html#m30),
 [$\mathrm{P}\subseteq\mathrm{NP}$](paper.html#m32),
 [$\mathrm{NP}\subseteq\mathrm{PSPACE}$](paper.html#m36),
-[Savitch's theorem, $\mathrm{PSPACE}=\mathrm{NPSPACE}$](paper.html#m34), and
+[$\mathrm{PSPACE}=\mathrm{NPSPACE}$](paper.html#m34) (Savitch's theorem), and
 [$\mathrm{NPSPACE}\subseteq\mathrm{EXPTIME}$](paper.html#m38).
 We also state $\mathrm{P}\ne\mathrm{NP}$ as an open question.

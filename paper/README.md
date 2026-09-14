@@ -21,7 +21,7 @@ passages link to the declarations carrying the proof metadata. All targets
 are checked directly against the inspected concept and proof identifiers.
 
 The marked and unmarked PDFs each have five pages and exactly the same
-2,249 body words. The marker package can change vertical spacing and page
+2,242 body words. The marker package can change vertical spacing and page
 breaks; the body-text comparison checks that annotations preserve the text.
 Page-number positions were excluded from the body-text comparison.
 Direct pdflatex and lualatex checks were used because the installed latexmk
